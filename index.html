@@ -15,9 +15,8 @@
     </style>
 </head>
 <body>
-    Welcome!!!
+    <div id="divHeader">Welcome!</div>
     <div id="divContent"> </div>
-
     <script type="module">
         // SDKs: https://firebase.google.com/docs/web/setup#available-libraries
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
@@ -44,6 +43,7 @@
         var divContent = document.getElementById('divContent');
 
         onValue(dbTickers, (items) => {
+            divContent.innerHTML = '';
             items.forEach(function(item){
                 let itemHTML = `Key:<b>${item.key}</b><br>Value:<b>${item.val()}</b><br><br>`;
                 divContent.innerHTML += itemHTML;
