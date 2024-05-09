@@ -40,7 +40,23 @@
 
         const tickersRef = ref(db, 'tickers/');
         onValue(tickersRef, (snapshot) => {
-            const item = snapshot.val();
+            snapshot.forEach(function(item){
+                //This loop iterates over children of user_id
+                let msg = `Key: ${item.key}\n`;
+                msg += `Value: ${item.val()}`;
+                
+                alert(msg);
+
+                //childNodes.key is key of the children of userid such as (20170710)
+                //childNodes.val().name;
+                //childNodes.val().time;
+                //childNodes.val().rest_time;
+                //childNodes.val().interval_time;
+            });
+
+
+
+            const items = snapshot.val();
             alert(item);
         });
         
