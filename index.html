@@ -16,6 +16,7 @@
 </head>
 <body>
     Welcome!!!
+    <div id="divContent"> </div>
 
     <script type="module">
         // SDKs: https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,28 +39,16 @@
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
-        const tickersRef = ref(db, 'tickers/');
-        onValue(tickersRef, (snapshot) => {
-            snapshot.forEach(function(item){
-                //This loop iterates over children of user_id
-                let msg = `Key: ${item.key}\n`;
-                msg += `Value: ${item.val()}`;
-                
-                alert(msg);
-
-                //childNodes.key is key of the children of userid such as (20170710)
-                //childNodes.val().name;
-                //childNodes.val().time;
-                //childNodes.val().rest_time;
-                //childNodes.val().interval_time;
-            });
-
-
-
-            const items = snapshot.val();
-            alert(item);
-        });
+        const dbTickers = ref(db, 'tickers/');
         
+        var divContent = document.getElementById('divContent');
+
+        onValue(dbTickers, (items) => {
+            items.forEach(function(item){
+                let itemHTML = `Key:<b>${item.key}</b><br>Value:<b>${item.val()}</b><br><br>`;
+                divContent.innerHTML += itemHTML;
+            });
+        });
       </script>
 </body>
 </html>
