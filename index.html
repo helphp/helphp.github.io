@@ -21,7 +21,7 @@
         // SDKs: https://firebase.google.com/docs/web/setup#available-libraries
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
       
         const firebaseConfig = {
             apiKey: "AIzaSyDzG7jKME1H_ouFomrG7F26teQFxSFrJAA",
@@ -38,11 +38,11 @@
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
-        var tickers = db.ref("tickers");
-        tickers.once("value", function(snapshot) { 
-            alert(snapshot.val());
+        const tickersRef = ref(db, 'tickers/');
+        onValue(tickersRef, (snapshot) => {
+            const item = snapshot.val();
+            alert(item);
         });
-        //const tickers_from_db = query(ref(db, 'tickers/'), orderByChild('starCount'));
         
       </script>
 </body>
