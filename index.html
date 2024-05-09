@@ -27,14 +27,25 @@
     <script type="module">
         // SDKs: https://firebase.google.com/docs/web/setup#available-libraries
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
         import { firebaseConfig } from "./js/config.js";
       
+        const auth = getAuth();
+        signInAnonymously(auth)
+        .then(() => {
+            // Signed in..
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ...
+        });
+
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
-
         const dbTickers = ref(db, 'tickers/');
         
         var divContent = document.getElementById('divContent');
