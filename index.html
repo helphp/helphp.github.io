@@ -38,8 +38,8 @@
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
-        var ref = db.ref("tickers");
-        ref.once("value", function(snapshot) { 
+        var tickers = db.ref("tickers");
+        tickers.once("value", function(snapshot) { 
             alert(snapshot.val());
         });
         //const tickers_from_db = query(ref(db, 'tickers/'), orderByChild('starCount'));
