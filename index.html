@@ -38,7 +38,7 @@
         const analytics = getAnalytics(app);
         const db = getDatabase(app);
 
-        var ref = admin.database().ref("tickers");
+        var ref = db.ref("tickers");
         ref.once("value", function(snapshot) { 
             alert(snapshot.val());
         });
