@@ -16,5 +16,34 @@
 </head>
 <body>
     Welcome!!!
+
+    <script type="module">
+        // SDKs: https://firebase.google.com/docs/web/setup#available-libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+      
+        const firebaseConfig = {
+            apiKey: "AIzaSyDzG7jKME1H_ouFomrG7F26teQFxSFrJAA",
+            authDomain: "helphp-web.firebaseapp.com",
+            databaseURL: "https://helphp-web-default-rtdb.firebaseio.com",
+            projectId: "helphp-web",
+            storageBucket: "helphp-web.appspot.com",
+            messagingSenderId: "825751389893",
+            appId: "1:825751389893:web:8747338848d65e11cb52ac",
+            measurementId: "G-3MKJQHCRLZ"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+
+        var ref = admin.database().ref("tickers");
+        ref.once("value", function(snapshot) { 
+            alert(snapshot.val());
+        });
+        //const tickers_from_db = query(ref(db, 'tickers/'), orderByChild('starCount'));
+        
+      </script>
 </body>
 </html>
