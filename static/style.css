@@ -45,10 +45,6 @@ a:active {
     position: absolute;
     padding:10px;
 }
-.info.corner {
-    opacity: 0;
-    animation: hideshow 2.5s 5s linear infinite alternate;
-}
 .info.github-text-off {
     display:none;
 }
