@@ -36,6 +36,6 @@ onChildAdded(dbRef, (data) => {
     messages.push(data.val());
     if(!messagesFirst){
         messagesFirst = true;
-        display_message();
+        setTimeout(display_message, 2000);
     }
 });
