@@ -16,17 +16,6 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 const dbRef = ref(db, 'github_messages');
 
-let messages = [];
-let messagesFirst = false;
-let messagesDisplayed = false;
-onChildAdded(dbRef, (data) => {
-    messages.push(data.val());
-    if(!messagesFirst){
-        messagesFirst = true;
-        display_message();
-    }
-});
-
 function display_message(){
     if(messages.length > 0){
         if(!messagesDisplayed){
@@ -39,3 +28,14 @@ function display_message(){
     }
     setTimeout(display_message, 5000);
 }
+
+let messages = [];
+let messagesFirst = false;
+let messagesDisplayed = false;
+onChildAdded(dbRef, (data) => {
+    messages.push(data.val());
+    if(!messagesFirst){
+        messagesFirst = true;
+        display_message();
+    }
+});
