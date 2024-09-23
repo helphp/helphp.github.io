@@ -71,4 +71,14 @@ class Hypnotize {
 
 document.addEventListener("DOMContentLoaded", () => {
     const hypnotize = new Hypnotize();
+
+            const divText = document.getElementById('github-text')
+            divText.classList.remove('github-text-off');
+            divText.classList.add('github-text-on');
+            messagesDisplayed = true;
+
+        document.getElementById('github-text-span').innerHTML = 'If you lived<br>here, you'd<br>already be<br>home'
+    }
+    setTimeout(display_message, 5000);
+}
 });
